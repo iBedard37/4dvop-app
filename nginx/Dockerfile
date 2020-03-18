@@ -10,8 +10,10 @@ RUN apt-get install nginx -y
 # Remove default web APP
 RUN rm -r /var/www/html/*
 
-RUN cd /var/www/html/ \
-    && git clone https://github.com/diranetafen/static-website-example.git
+# Install GIT
+RUN apt-get install git -y
+
+RUN git clone https://github.com/diranetafen/static-website-example.git /var/www/html/
 
 RUN "sed -i 's/80 default_server/8080 default_server/g' /etc/nginx/sites-enabled/default"
 
