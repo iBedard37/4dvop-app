@@ -15,7 +15,7 @@ RUN apt-get install git -y
 
 RUN git clone https://github.com/diranetafen/static-website-example.git /var/www/html/
 
-RUN "sed -i 's/80 default_server/8080 default_server/g' /etc/nginx/sites-enabled/default"
+RUN sed -i 's/80 default_server/8080 default_server/g' /etc/nginx/sites-enabled/default
 
 ENTRYPOINT [ "/usr/sbin/nginx", "-g", "daemon off;" ]
 
