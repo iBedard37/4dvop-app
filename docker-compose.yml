@@ -1,12 +1,12 @@
 version: '3'
-services:
-  nginx:
-    image: nginx-4dvop
-    ports:
-      - "8080:8080"
-  haproxy:
-    image: haproxy-4dvop
-    ports:
-      - "80:80"
-    depends_on:
-      - nginx
+services: 
+    nginx:
+        image: schisme/4dvop_nginx:latest-nginx
+        ports: 
+            - 8080:8080
+    haproxy:
+        image: schisme/4dvop_nginx:latest-haproxy
+        ports:
+            - 80:80
+        depends_on: 
+            - nginx 

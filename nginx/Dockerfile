@@ -1,22 +1,9 @@
-FROM ubuntu:latest
-LABEL maintainer="Ianis Bedard" mail="ianisbedard@gmail.com"
-
-# Update apt-get
-RUN apt-get update && apt-get upgrade -y
-
-# Install nginx
-RUN apt-get install nginx -y
-
-# Remove default web APP
-RUN rm -r /var/www/html/*
-
-# Install GIT
-RUN apt-get install git -y
-
+FROM ubuntu
+RUN apt-get update && apt-get -y upgrade && apt-get install -y \
+    nginx \
+    git
+RUN rm -rf /var/www/html/*
 RUN git clone https://github.com/diranetafen/static-website-example.git /var/www/html/
-
 RUN sed -i 's/80 default_server/8080 default_server/g' /etc/nginx/sites-enabled/default
-
-ENTRYPOINT [ "/usr/sbin/nginx", "-g", "daemon off;" ]
-
 EXPOSE 8080
+ENTRYPOINT ["/usr/sbin/nginx","-g","daemon off;"]
