@@ -1,0 +1,23 @@
+---
+
+    - hosts: SAMERE_2
+      become: true
+      tasks:
+        - name: Deploy 4dvop-nginx 
+          docker_container:
+            name: nginx
+            hostname: nginx
+            image: nolly03/nginx
+            state: started
+            ports:
+              - "8080:8080"
+        - name: Deploy 4dvop-haproxy
+          docker_container:
+            name: haproxy
+            hostname: haproxy 
+            image: nolly03/haproxy
+            state: started
+            links:  
+              - nginx:nginx
+            ports:
+              - "80:80"
