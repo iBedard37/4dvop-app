@@ -7,7 +7,7 @@
           docker_container:
             name: nginx
             hostname: nginx
-            image: nolly03/nginx
+            image: nolly03/nginx:latest
             state: started
             ports:
               - "8080:8080"
@@ -15,7 +15,7 @@
           docker_container:
             name: haproxy
             hostname: haproxy 
-            image: nolly03/haproxy
+            image: nolly03/haproxy:latest
             state: started
             links:  
               - nginx:nginx
